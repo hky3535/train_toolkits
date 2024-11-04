@@ -48,7 +48,7 @@ def yolo2coco_gt(image_storage_path, yolo_storage_path, coco_file_path, classes)
                     "id": id, 
                     "image_id": index, 
                     "category_id": int(clas), 
-                    "bbox": list(map(int, [cx-w/2, cy-h/2, w, h])), 
+                    "bbox": [cx-w/2, cy-h/2, w, h], 
                     "area": width * height, 
                     "iscrowd": 0
                 })
@@ -76,7 +76,7 @@ def yolo2coco_dt(image_storage_path, yolo_storage_path, coco_file_path, classes)
                 coco_data.append({
                     "image_id": index, 
                     "category_id": int(clas), 
-                    "bbox": list(map(int, [cx-w/2, cy-h/2, w, h])), 
+                    "bbox": [cx-w/2, cy-h/2, w, h], 
                     "score": conf
                 })
     
