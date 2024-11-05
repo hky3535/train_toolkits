@@ -24,7 +24,7 @@ def yolo2coco_gt(image_storage_path, yolo_storage_path, coco_file_path, classes)
         coco_data["categories"].append({"id": index, "name": coco_clas})
     
     id = 0
-    for index, image_file_name in enumerate(os.listdir(image_storage_path)):
+    for index, image_file_name in enumerate(sorted(os.listdir(image_storage_path))):
         image_file_path = Path(os.path.join(image_storage_path, image_file_name))
         yolo_file_path = os.path.join(yolo_storage_path, image_file_path.stem + ".txt")
         if not os.path.exists(yolo_file_path): continue
@@ -60,7 +60,7 @@ def yolo2coco_gt(image_storage_path, yolo_storage_path, coco_file_path, classes)
 def yolo2coco_dt(image_storage_path, yolo_storage_path, coco_file_path, classes):
     coco_data = list()
     
-    for index, image_file_name in enumerate(os.listdir(image_storage_path)):
+    for index, image_file_name in enumerate(sorted(os.listdir(image_storage_path))):
         image_file_path = Path(os.path.join(image_storage_path, image_file_name))
         yolo_file_path = os.path.join(yolo_storage_path, image_file_path.stem + ".txt")
         if not os.path.exists(yolo_file_path): continue
