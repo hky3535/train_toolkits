@@ -27,7 +27,6 @@ def yolo2coco_gt(image_storage_path, yolo_storage_path, coco_file_path, classes)
     for index, image_file_name in enumerate(sorted(os.listdir(image_storage_path))):
         image_file_path = Path(os.path.join(image_storage_path, image_file_name))
         yolo_file_path = os.path.join(yolo_storage_path, image_file_path.stem + ".txt")
-        if not os.path.exists(yolo_file_path): continue
         
         height, width, _ = cv2.imread(image_file_path).shape
         
@@ -37,6 +36,8 @@ def yolo2coco_gt(image_storage_path, yolo_storage_path, coco_file_path, classes)
             "width": width, 
             "height": height
         })
+
+        if not os.path.exists(yolo_file_path): continue
         
         with open(yolo_file_path, "r") as file:
             for line in file:
@@ -63,6 +64,7 @@ def yolo2coco_dt(image_storage_path, yolo_storage_path, coco_file_path, classes)
     for index, image_file_name in enumerate(sorted(os.listdir(image_storage_path))):
         image_file_path = Path(os.path.join(image_storage_path, image_file_name))
         yolo_file_path = os.path.join(yolo_storage_path, image_file_path.stem + ".txt")
+        
         if not os.path.exists(yolo_file_path): continue
         
         height, width, _ = cv2.imread(image_file_path).shape
